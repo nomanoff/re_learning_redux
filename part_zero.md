@@ -54,3 +54,55 @@ const addTodoAction = {
 ### Action Creators
 
 An actions creator is function that creates and returns an action object. We typically use these so we don't have to write the action object by hand every time.
+
+```javascript
+const addTodo = (text) => {
+  return {
+    type: "todos/todoAdded",
+    payload: text,
+  };
+};
+```
+
+### Reducers
+
+A **reducer** is function that receives the current `state` and an `action` object, decides how to update the state if neccessary, and returns the new state: `(state, action) => newState`. **You can think of a reducer as an event listener which handles events based on the received action (event) type.**
+
+#### Reducers must _always_ follow below rules:
+
+- They should only calculate the new state value based on the `state` and `action` arguments;
+- They are not allowed to modify the existing `state`. Instead, they must make _immutable updates_, by copying the existing `state` and making changes to the copied values.
+- They must not do any asynchronous logic, calculate random values, or cause other "side effects"
+
+#### The logic inside reducer functions typically follow the same series of steps:
+
+- Check to see if the reducer cares about this action
+
+* if so, make a copy of the state, update the copy with new values, and return it
+
+- Otherwise, return the existing state unchanged;
+
+#### An example of how reducers should look like:
+
+```javascript
+const initialState = { value: 0 };
+
+function counterReducer(state = initialState, action) {
+  // check to if the reducer cares about this action
+  if (action.type === "counter/increment") {
+    // if so, make a copy of  `state`
+    return {
+      ...state,
+      // and update the copy with the new value
+      value: state.value + 1,
+    };
+  }
+
+  // otherwise, return the existing state unchanged
+  return state;
+}
+```
+
+> Reducers can use any kind of logic inside to decide what the new state should be: `if/else`, `switch`, loops, and so on.
+
+[Why Are They Called `Reducers` in depth explanation link](https://stackoverflow.com/questions/40599496/why-is-a-redux-reducer-called-a-reducer)
