@@ -27,3 +27,26 @@ Predictable and Testable
 - The **actions**, the events that occur in the app based on user input, and trigger updates in the state
 
 ![One-way data flow: ](./assets/redux_state.png)
+
+### Immutability
+
+"Mutalble" means "changeable". If something is immutable it can never be changed.
+
+**In order to update values immutably, your code must make copies of existing objects/arrays, and then modify the copies.**
+
+**Redux expects that all state updates are done immutably.**
+
+## Terminology
+
+### Actions
+
+An action is plain JavaScript object that has a type field. **You can think of an action as an event that describes something that happened in the application.**
+
+An example of a typical action object:
+
+```javascript
+const addTodoAction = {
+  type: "todos/todoAdded",
+  payload: "Buy milk",
+};
+```
