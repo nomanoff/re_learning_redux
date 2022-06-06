@@ -30,7 +30,7 @@ Predictable and Testable
 
 ### Immutability
 
-"Mutalble" means "changeable". If something is immutable it can never be changed.
+"Mutable" means "changeable". If something is immutable it can never be changed.
 
 **In order to update values immutably, your code must make copies of existing objects/arrays, and then modify the copies.**
 
@@ -50,3 +50,7 @@ const addTodoAction = {
   payload: "Buy milk",
 };
 ```
+
+### Action Creators
+
+An actions creator is function that creates and returns an action object. We typically use these so we don't have to write the action object by hand every time.
